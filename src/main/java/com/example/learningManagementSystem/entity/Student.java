@@ -1,11 +1,12 @@
 package com.example.learningManagementSystem.entity;
 
+import com.example.learningManagementSystem.service.UpdatableEntity;
 import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-public class Student {
+public class Student implements UpdatableEntity<Student> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,5 +52,11 @@ public class Student {
 
     public void setGroups(List<Group> groupList) {
         this.groups = groupList;
+    }
+
+    @Override
+    public void updateFrom(Student sourse) {
+        this.firstName = sourse.getFirstName();
+        this.lastName = sourse.getLastName();
     }
 }

@@ -1,12 +1,13 @@
 package com.example.learningManagementSystem.entity;
 
+import com.example.learningManagementSystem.service.UpdatableEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Teacher {
+public class Teacher implements UpdatableEntity<Teacher> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,4 +41,9 @@ public class Teacher {
         this.firstName = firstName;
     }
 
+    @Override
+    public void updateFrom(Teacher sourse) {
+        this.firstName = sourse.getFirstName();
+        this.lastName = sourse.getLastName();
+    }
 }

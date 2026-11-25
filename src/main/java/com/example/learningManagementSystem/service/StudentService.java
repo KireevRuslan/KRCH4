@@ -10,6 +10,4 @@ public class StudentService extends BaseServiceImpl<Student> {
     public StudentService(StudentRepository studentRepository) {
         super(studentRepository);
     }
-
-
 }

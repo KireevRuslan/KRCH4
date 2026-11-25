@@ -1,11 +1,12 @@
 package com.example.learningManagementSystem.entity;
 
+import com.example.learningManagementSystem.service.UpdatableEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-public class Schedule {
+public class Schedule implements UpdatableEntity<Schedule> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -69,6 +70,12 @@ public class Schedule {
 
     public void setStartDateTime(LocalDateTime startDateTime) {
         this.startDateTime = startDateTime;
+    }
+
+    @Override
+    public void updateFrom(Schedule sourse) {
+        this.startDateTime = sourse.getStartDateTime();
+        this.endDateTime = sourse.getEndDateTime();
     }
 }
 

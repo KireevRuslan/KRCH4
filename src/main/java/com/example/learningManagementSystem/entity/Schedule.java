@@ -73,9 +73,12 @@ public class Schedule implements UpdatableEntity<Schedule> {
     }
 
     @Override
-    public void updateFrom(Schedule sourse) {
-        this.startDateTime = sourse.getStartDateTime();
-        this.endDateTime = sourse.getEndDateTime();
+    public void updateFrom(Schedule source) {
+        this.group = source.getGroup();
+        this.teacher = source.getTeacher();
+        this.course = source.getCourse();
+        this.startDateTime = source.getStartDateTime();
+        this.endDateTime = source.getEndDateTime();
     }
 }
 

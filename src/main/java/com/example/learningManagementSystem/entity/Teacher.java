@@ -1,10 +1,9 @@
 package com.example.learningManagementSystem.entity;
 
 import com.example.learningManagementSystem.service.UpdatableEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.UUID;
 
 @Entity
 public class Teacher implements UpdatableEntity<Teacher> {
@@ -41,6 +40,20 @@ public class Teacher implements UpdatableEntity<Teacher> {
         this.firstName = firstName;
     }
 
+    @Column(unique = true, nullable = false, updatable = false)
+    private String teacherNumber;
+
+    @PrePersist
+    public void generateTeacherNumber() {
+        this.teacherNumber = "TCH-" +
+                UUID.randomUUID().toString()
+                        .substring(0, 8)
+                        .toUpperCase();
+    }
+
+    public String getTeacherNumber() {
+        return teacherNumber;
+    }
     @Override
     public void updateFrom(Teacher sourse) {
         this.firstName = sourse.getFirstName();

@@ -4,6 +4,7 @@ import com.example.learningManagementSystem.service.UpdatableEntity;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Student implements UpdatableEntity<Student> {
@@ -52,6 +53,21 @@ public class Student implements UpdatableEntity<Student> {
 
     public void setGroups(List<Group> groupList) {
         this.groups = groupList;
+    }
+
+    @Column(unique = true, nullable = false, updatable = false)
+    private String studentNumber;
+
+    @PrePersist
+    public void generateStudentNumber() {
+        this.studentNumber = "STU-" +
+                UUID.randomUUID().toString()
+                        .substring(0, 8)
+                        .toUpperCase();
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
     @Override

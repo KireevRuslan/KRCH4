@@ -2,6 +2,7 @@ package com.example.learningManagementSystem.entity;
 
 import com.example.learningManagementSystem.service.UpdatableEntity;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class Group implements UpdatableEntity<Group> {
     private String name;
 
     @ManyToMany(mappedBy = "groups")
+    @JsonIgnore
     private List<Student> students;
 
     public Group() {
@@ -45,5 +47,6 @@ public class Group implements UpdatableEntity<Group> {
     @Override
     public void updateFrom(Group sourse) {
         this.name = sourse.getName();
+
     }
 }

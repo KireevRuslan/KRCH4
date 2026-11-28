@@ -32,6 +32,10 @@ public class Schedule implements UpdatableEntity<Schedule> {
 
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Teacher getTeacher() {
         return teacher;
     }

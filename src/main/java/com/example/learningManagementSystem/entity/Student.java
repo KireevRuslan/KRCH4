@@ -71,8 +71,9 @@ public class Student implements UpdatableEntity<Student> {
     }
 
     @Override
-    public void updateFrom(Student sourse) {
-        this.firstName = sourse.getFirstName();
-        this.lastName = sourse.getLastName();
+    public void updateFrom(Student source) {
+        this.firstName = source.getFirstName();
+        this.lastName = source.getLastName();
+        this.groups = source.getGroups();
     }
 }
